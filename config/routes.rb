@@ -2,8 +2,21 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :trainers
   devise_for :members
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  
+#会員側のルーティング設定
+  devise_for :members, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+#トレーナー側のルーティング設定
+  devise_for :trainers, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+#管理者側ののルーティング設定
+  devise_for :admin, controllers: {
+  sessions: "admin/sessions"
+}
 end
