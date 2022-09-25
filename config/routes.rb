@@ -1,22 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :trainers
-  devise_for :members
-  
+
 #会員側のルーティング設定
-  devise_for :members, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
+  devise_for :members,skip: [:passwords], controllers: {
+  registrations: "public/members/registrations",
+  sessions: 'public/members/sessions'
 }
 
 #トレーナー側のルーティング設定
-  devise_for :trainers, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
+  devise_for :trainers,skip: [:passwords], controllers: {
+  registrations: "public/trainers/registrations",
+  sessions: 'public/trainers/sessions'
 }
 
 #管理者側ののルーティング設定
-  devise_for :admin, controllers: {
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 end
